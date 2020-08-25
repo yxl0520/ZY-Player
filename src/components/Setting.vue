@@ -121,20 +121,20 @@
           </div>
         </div>
       </div>
-      <div class="qrcode">
+      <!-- <div class="qrcode">
         <div class="title">请作者吃辣条</div>
         <div class="qrcode-box">
           <img class="qrcode-item" src="../assets/image/wepay-hunlongyu.png">
           <img class="qrcode-item" src="../assets/image/wepay_cuiocean.jpg">
         </div>
-      </div>
+      </div> -->
       <div class="clearDB">
         <span @click="clearDBEvent" class="clearBtn">软件重置</span>
-        <span class="clearTips">如果新安装用户, 无法显示资源, 请点击软件重置. 如非必要, 切勿点击. 会清空用户数据, 恢复默认设置. 点击即软件重置, 并关闭软件.</span>
+        <!-- <span class="clearTips">如果新安装用户, 无法显示资源, 请点击软件重置. 如非必要, 切勿点击. 会清空用户数据, 恢复默认设置. 点击即软件重置, 并关闭软件.</span> -->
       </div>
-      <div class="Tips">
+      <!-- <div class="Tips">
         <span>所有资源来自网上, 该软件不参与任何制作, 上传, 储存等内容, 禁止传播违法资源. 该软件仅供学习参考, 请于安装后24小时内删除.</span>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
