@@ -2,7 +2,7 @@
   <div class="film pictureView">
     <div class="header">
       <div class="zy-select" @mouseleave="show.site = false">
-        <div class="vs-placeholder" @click="show.site = true">{{site.name}}</div>
+        <div class="vs-placeholder" @mouseover="show.site = true">{{site.name}}</div>
         <div class="vs-options" v-show="show.site">
           <ul class="zy-scroll" style="max-height: 600px;">
             <li :class="site.key === i.key ? 'active' : ''" v-for="i in sites" :key="i.key" @click="siteClick(i)">{{ i.name }}</li>
@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="zy-select" @mouseleave="show.classList = false" v-show="show.class">
-        <div class="vs-placeholder" @click="show.classList = true">{{type.name}}</div>
+        <div class="vs-placeholder" @mouseover="show.classList = true">{{type.name}}</div>
         <div class="vs-options" v-show="show.classList">
           <ul class="zy-scroll" style="max-height: 600px;">
             <li :class="type.tid === i.tid ? 'active' : ''" v-for="i in classList" :key="i.tid" @click="classClick(i)">{{ i.name | classNameFilter }}</li>
