@@ -5,6 +5,7 @@
         <el-button @click.stop="exportHistory" icon="el-icon-upload2">导出</el-button>
         <el-button @click.stop="importHistory" icon="el-icon-download">导入</el-button>
         <el-button @click.stop="clearAllHistory" icon="el-icon-delete-solid">清空</el-button>
+        <el-button @click.stop="getAllhistory('handle')" icon="el-icon-refresh">重新加载</el-button>
       </div>
       <div class="listpage-body" id="history-table">
         <el-table size="mini" fit height="100%" :data="history" row-key="id" @row-click="detailEvent">
@@ -214,9 +215,10 @@ export default {
         this.history = []
       })
     },
-    getAllhistory () {
+    getAllhistory (type) {
       history.all().then(res => {
         this.history = res.reverse()
+        if (type === 'handle') this.$message.success('列表手动加载成功！')
       })
     },
     getAllsites () {

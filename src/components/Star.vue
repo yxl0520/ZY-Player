@@ -7,6 +7,7 @@
         <el-button @click.stop="importFavoritesEvent" icon="el-icon-download">导入</el-button>
         <el-button @click.stop="clearFavoritesEvent" icon="el-icon-delete-solid">清空</el-button>
         <el-button @click.stop="updateAllEvent" icon="el-icon-refresh">同步所有收藏</el-button>
+        <el-button @click.stop="getFavorites('handle')" icon="el-icon-refresh">重新加载</el-button>
       </div>
       <div class="listpage-body" id="star-table" v-show="viewMode === 'list'">
         <el-table size="mini" fit height="100%" row-key="id"
@@ -332,9 +333,10 @@ export default {
         return ''
       }
     },
-    getFavorites () {
+    getFavorites (type) {
       star.all().then(res => {
         this.list = res.reverse()
+        if (type === 'handle') this.$message.success('列表手动加载成功！')
       })
     },
     getAllsites () {
