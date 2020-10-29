@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="shortcut">
-        <div class="title">快捷键</div>
+        <div class="title">快捷键 <span class="help" @click="openDoc('shortcut')" :style="helpStyle">帮助</span></div>
         <div class="shortcut-box">
           <div class="zy-select" @mouseleave="show.shortcut = false">
             <div class="vs-placeholder" @click="show.shortcut = true">快捷键</div>
@@ -79,7 +79,7 @@
           </div>
       </div>
       <div class="site">
-        <div class="title">源管理</div>
+        <div class="title">源管理 <span class="help" @click="openDoc('sites')" :style="helpStyle">帮助</span></div>
         <div class="site-box">
           <div class="zy-select">
             <div class="vs-placeholder vs-noAfter" @click="editSitesEvent">编辑源</div>
@@ -200,6 +200,25 @@ export default {
       },
       set (val) {
         this.SET_EDITSITES(val)
+      }
+    },
+    helpColor () {
+      let color = 'red'
+      switch (this.d.theme) {
+        case 'pink':
+          color = '#43a1f1'
+          break
+      }
+      return color
+    },
+    helpStyle () {
+      return {
+        'font-size': '12px',
+        cursor: 'pointer',
+        'margin-left': '8px',
+        'vertical-align': 'top',
+        // color: this.d.theme !== 'light' ? '#fff' : '#000'
+        color: this.helpColor
       }
     }
   },
@@ -424,6 +443,9 @@ export default {
     width: 100%;
     padding: 20px;
     margin-top: 20px;
+    .zy-checkbox {
+      margin-top: 10px;
+    }
   }
   .site{
     width: 100%;
@@ -460,6 +482,7 @@ export default {
         width: 200px;
         height: 180px;
         margin-right: 20px;
+        margin-bottom: 10px;
         cursor: pointer;
         border-radius: 2px;
         .theme-image{
@@ -518,6 +541,21 @@ export default {
     margin: 20px;
     font-size: 12px;
     color: #ff000066;
+  }
+  .title {
+    margin-bottom: 16px;
+  }
+  .zy-select {
+    width: auto!important;
+    margin-bottom: 10px;
+  }
+  .zy-checkbox {
+    width: auto;
+    margin-right: 20px;
+  }
+  .zy-input {
+    width: auto!important;
+    margin-right: 20px;
   }
 }
 </style>
