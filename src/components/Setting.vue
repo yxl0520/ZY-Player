@@ -87,7 +87,7 @@
           <div class="zy-input" @click="toggleExcludeRootClasses">
            <input type="checkbox" v-model = "d.excludeRootClasses" @change="updateSettingEvent"> 屏蔽主分类
           </div>
-          <div class="zy-input" @click="toggleExcludeR18Films">
+          <div class="zy-input" v-if="adminManage.isShowFuliItem" @click="toggleExcludeR18Films">
            <input type="checkbox" v-model = "d.excludeR18Films" @change="updateSettingEvent"> 屏蔽福利片
          </div>
         </div>
@@ -120,6 +120,17 @@
             <div class="theme-name">Pink</div>
           </div>
         </div>
+      </div>
+      <div class='site'>
+         <div class="title">管理员管理</div>
+         <div class="site-box">
+            <div class="zy-select" v-if="!adminManage.isShowFuliItem">
+              <div class="vs-placeholder vs-noAfter" @click="loginAdmin">登录</div>
+            </div>
+            <div class="zy-select" v-if="adminManage.isShowFuliItem">
+              <div class="vs-placeholder vs-noAfter" @click="logoutAdmin">退出</div>
+            </div>
+          </div>
       </div>
       <!-- <div class="qrcode">
         <div class="title">请作者吃辣条</div>
@@ -159,7 +170,7 @@ export default {
       },
       externalPlayer: '',
       editPlayerPath: false,
-      excludeR18Films: true,
+      excludeR18Films: true, // 默认屏蔽Fuli片
       latestVersion: pkg.version,
       forwardTimeInSec: 5,
       d: {
@@ -174,6 +185,10 @@ export default {
         excludeRootClasses: true,
         excludeR18Films: true,
         forwardTimeInSec: 5
+      },
+      adminManage: {
+        defaultpsd: 'Colin@123',
+        isShowFuliItem: false
       }
     }
   },
@@ -384,6 +399,38 @@ export default {
         e.preventDefault()
         menu.popup(remote.getCurrentWindow())
       })
+    },
+    loginAdmin () {
+      this.$prompt('', '请输入密码', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        inputType: 'password'
+      }).then(({ value }) => {
+        if (value === this.adminManage.defaultpsd) {
+          this.adminManage.isShowFuliItem = true
+          this.$message({
+            type: 'success',
+            message: '管理员登录成功'
+          })
+        } else {
+          this.$message({
+            type: 'error',
+            message: '密码错误'
+          })
+        }
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消登录'
+        })
+      })
+    },
+    logoutAdmin () {
+      this.adminManage.isShowFuliItem = false
+      this.$message({
+        type: 'info',
+        message: '退出成功'
+      })
     }
   },
   created () {
@@ -556,6 +603,9 @@ export default {
   .zy-input {
     width: auto!important;
     margin-right: 20px;
+    line-height: 12px;
   }
+  // input[type=checkbox] {
+  // }
 }
 </style>
