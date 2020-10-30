@@ -1171,7 +1171,7 @@ export default {
       }
     })
     this.bindEvent()
-    this.minMaxEvent()
+    // this.minMaxEvent()
   },
   beforeDestroy () {
     clearInterval(this.timer)
